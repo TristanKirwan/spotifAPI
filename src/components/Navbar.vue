@@ -18,6 +18,9 @@ nav {
   max-width: 1200px;
   margin: 0 auto;
   align-items: center;
+  @include xl {
+    max-width: 1600px;
+  }
 }
 
 hr {
@@ -27,6 +30,9 @@ hr {
   grid-column: 1 / -1;
   @include m {
     width: 90%;
+  }
+  @include xl {
+    width: 95%;
   }
 }
 
