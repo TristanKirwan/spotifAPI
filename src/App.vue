@@ -1,15 +1,18 @@
 <template>
+  <BackgroundBlobs />
   <Navbar />
   <router-view/>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
+import BackgroundBlobs from '@/components/BackgroundBlobs'
 
 export default {
   name: 'App',
   components: {
-    Navbar
+    Navbar,
+    BackgroundBlobs
   }
 }
 </script>
@@ -33,7 +36,16 @@ export default {
 
 html {
   background-color: var(--color-white);
-  color: var(--color-black)
+  color: var(--color-black);
+}
+
+body { 
+  min-height: 100vh;
+}
+
+#app {
+  height: 100%;
+  position: relative;
 }
 
 html,
