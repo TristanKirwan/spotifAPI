@@ -1,6 +1,6 @@
 <template>
   <nav id="nav">
-    <div class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></div>
+    <router-link to="/" class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></router-link>
     <div class="searchBar">
       <i class="fas fa-search"></i>
     </div>
