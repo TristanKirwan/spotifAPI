@@ -40,11 +40,14 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: none;
+  @include  m {
+    display: block;
+  }
 }
 
 .wrapper {
   position: absolute;
-  // top: 0;
   left: 50%;
   opacity: 0.25;
   width: 100%;
@@ -55,6 +58,7 @@ export default {
   max-width: 600px;
   margin: 0 auto;
   transform: translateX(-50%);
+  z-index: -1;
   @include m {
     display: block;
     max-width: 1200px;

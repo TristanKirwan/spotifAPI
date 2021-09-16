@@ -1,5 +1,5 @@
 <template>
-  <BackgroundBlobs />
+  <!-- <BackgroundBlobs /> -->
   <Navbar />
   <router-view/>
 </template>
