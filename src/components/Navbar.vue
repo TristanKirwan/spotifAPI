@@ -1,12 +1,24 @@
 <template>
   <nav id="nav">
     <router-link to="/" class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></router-link>
-    <div class="searchBar">
+    <div class="searchBar" v-if="hasAuthToken">
       <i class="fas fa-search"></i>
     </div>
     <hr>
   </nav>
 </template>
+
+<script>
+export default {
+  name: 'Navbar',
+  data(){
+    return {
+      hasAuthToken: this.$store.state.hasAuthToken
+    }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 @import '@/styles/imports.scss';

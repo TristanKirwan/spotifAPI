@@ -30,6 +30,7 @@ export default {
 
       const data = await result.json().then(res => {
         this.$store.commit('setExpiresIn', res.expiresIn)
+        this.$store.commit('setHasAccesToken', res.hasAuthToken)
       });
     }
   }

@@ -56,6 +56,10 @@ export default {
     }
   }
 
+  a{
+    display: inline-block;
+  }
+
   i {
     display: inline-block;
     margin-left: 10px;
