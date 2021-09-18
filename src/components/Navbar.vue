@@ -1,7 +1,7 @@
 <template>
   <nav id="nav">
     <router-link to="/" class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></router-link>
-    <div class="searchBar" v-if="hasAuthToken">
+    <div class="searchBar" v-if="hasAccessToken">
       <i class="fas fa-search"></i>
     </div>
     <hr>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Navbar',
-  data(){
-    return {
-      hasAuthToken: this.$store.state.hasAuthToken
-    }
-  }
+  computed: mapState([
+    'hasAccessToken'
+  ])
 }
 </script>
 

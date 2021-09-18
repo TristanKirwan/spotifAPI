@@ -37,7 +37,6 @@ export default {
         return res.json()
       })
       .then(data => {
-        console.log(data)
         if(data.message === 'No Auth token provided.') {
           console.log('Caught no auth token!')
         }

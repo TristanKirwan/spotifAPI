@@ -32,7 +32,7 @@ app.post('/login', (req, res) => {
     spotifyApi.setRefreshToken(data.body.refresh_token)
     res.json({
       expiresIn: data.body.expires_in,
-      hasAuthToken: true
+      hasAccessToken: true
     })
   })
   .catch(() => res.sendStatus(400))

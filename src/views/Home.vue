@@ -16,7 +16,7 @@ export default {
     HomeTestimonials
   },
   async created() {
-    if(this.$route.query.code){
+    if(this.$route.query.code && !this.$store.state.hasAccessToken){
       const returnedCode = this.$route.query.code
       const result = await fetch(`${process.env.VUE_APP_baseUrl}/login`, {
         method: 'POST',
@@ -30,7 +30,7 @@ export default {
 
       const data = await result.json().then(res => {
         this.$store.commit('setExpiresIn', res.expiresIn)
-        this.$store.commit('setHasAccesToken', res.hasAuthToken)
+        this.$store.commit('setHasAccesToken', res.hasAccessToken)
       });
     }
   }
