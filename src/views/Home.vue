@@ -29,11 +29,8 @@ export default {
       })
 
       const data = await result.json().then(res => {
-        this.$store.commit('setAccessToken', res.accessToken)
-        this.$store.commit('setRefreshToken', res.refreshToken)
         this.$store.commit('setExpiresIn', res.expiresIn)
       });
-      console.log(this.$store)
     }
   }
 }

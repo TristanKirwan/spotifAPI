@@ -15,23 +15,35 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
+const spotifyApi = new SpotifyWebApi({
+  redirectUri: process.env.redirect_uri,
+  clientId: process.env.client_id,
+  clientSecret: process.env.client_secret
+})
+
 app.post('/login', (req, res) => {
   const code = req.body.code
-  const spotifyApi = new SpotifyWebApi({
-    redirectUri: process.env.redirect_uri,
-    clientId: process.env.client_id,
-    clientSecret: process.env.client_secret
-  })
-
   spotifyApi.authorizationCodeGrant(code)
   .then(data => {
+    spotifyApi.setAccessToken(data.body.access_token)
+    spotifyApi.setRefreshToken(data.body.refresh_token)
     res.json({
-      accessToken: data.body.access_token,
-      refreshToken: data.body.refresh_token,
       expiresIn: data.body.expires_in
     })
   })
   .catch(() => res.sendStatus(400))
+})
+
+app.post('/refresh', (req, res) => {
+  spotifyApi.refreshAccessToken()
+  .then(data => {
+    console.log('Should be fine:', data)
+    spotifyApi.setAccessToken(data.body['access_token'])
+  })
+  .catch(err => {
+    console.error('Could not refresh access token:', err)
+    res.sendStatus(400)
+  })
 })
 
 
