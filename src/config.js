@@ -1,0 +1,1 @@
+export const auth_url = "https://accounts.spotify.com/authorize?client_id=931b50fba5fd40479556db57e12b0a39&response_type=code&redirect_uri=http://localhost:8080&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"

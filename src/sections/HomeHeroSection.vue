@@ -6,7 +6,7 @@
           Mess around with the spotify API to do anything you could normally do (and maybe even less!), but without having to open Spotify!
         </p>
       <div class="buttonContainer">
-        <Button>Check out whats popular</Button>
+        <Button :link="AuthLink">Authorize Spotify App</Button>
       </div>
       </div>
       <div class="mainContent">
@@ -31,6 +31,11 @@ export default {
     Search,
     Container,
     Button
+  },
+  data() { 
+    return {
+      AuthLink: process.env.VUE_APP_auth_link
+    }
   }
 }
 </script>

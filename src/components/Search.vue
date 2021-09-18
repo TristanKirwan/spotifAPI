@@ -17,14 +17,23 @@ export default {
   },
   methods: {
     submitSearchTerm() {
-      console.log(this.searchTerm)
+      this.$router.push({
+        name: "Search",
+        query: {
+          searchTerm: this.searchTerm
+        }
+      })
     }
-  } 
+  },
+  created() {
+    if(this.$route.query.searchTerm){
+      this.searchTerm = this.$route.query.searchTerm
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-  // @import '@/styles/imports.scss';
 
   .searchContainer {
     display: inline-block;

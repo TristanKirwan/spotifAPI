@@ -15,6 +15,27 @@ export default {
     HomeHeroSection,
     HomeTestimonials
   },
+  async created() {
+    if(this.$route.query.code){
+      const returnedCode = this.$route.query.code
+      const result = await fetch(`${process.env.VUE_APP_baseUrl}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          code: returnedCode
+        })
+      })
+
+      const data = await result.json().then(res => {
+        this.$store.commit('setAccessToken', res.accessToken)
+        this.$store.commit('setRefreshToken', res.refreshToken)
+        this.$store.commit('setExpiresIn', res.expiresIn)
+      });
+      console.log(this.$store)
+    }
+  }
 }
 </script>
 

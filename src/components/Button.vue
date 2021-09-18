@@ -4,7 +4,11 @@
     <slot></slot>
     <i class="fas fa-arrow-right"></i>
   </button>
-  <router-link v-if="link" :to="link" class="button" :class="btnClass"></router-link>
+  <router-link v-if="!isExternalLink" :to="link" class="button bbb" :class="btnClass"></router-link>
+  <a class="button aaa" v-if="isExternalLink" :class="btnClass" :href="link">
+    <slot></slot>
+    <i class="fas fa-arrow-right"></i>
+  </a>
 </template>
 
 <script>
@@ -18,6 +22,18 @@ export default {
     link : {
       type: String,
       default: ''
+    }
+  },
+  data() {
+    return {
+      isExternalLink: false
+    }
+  },
+  created(){
+    if(this.link && this.link.includes("http")){
+      this.isExternalLink = true
+    } else {
+      this.isExternalLink = false 
     }
   }
 }
