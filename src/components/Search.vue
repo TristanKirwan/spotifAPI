@@ -16,13 +16,34 @@ export default {
     }
   },
   methods: {
-    submitSearchTerm() {
+    async submitSearchTerm() {
       this.$router.push({
         name: "Search",
         query: {
           searchTerm: this.searchTerm
         }
       })
+
+      const result = await fetch(`${process.env.VUE_APP_baseUrl}/search`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          searchTerm: this.searchTerm
+        })
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        console.log(data)
+        if(data.message === 'No Auth token provided.') {
+          console.log('Caught no auth token!')
+        }
+      })
+      .catch(err => console.error(err))
+
     }
   },
   created() {

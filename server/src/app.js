@@ -4,6 +4,9 @@ const cors = require('cors')
 const SpotifyWebApi = require('spotify-web-api-node')
 require('dotenv').config({ path: `${__dirname}/.env` })
 
+const searchController = require('../controllers/searchController');
+
+
 const app = express();
 const port = 8000;
 
@@ -42,8 +45,27 @@ app.post('/refresh', (req, res) => {
   })
   .catch(err => {
     console.error('Could not refresh access token:', err)
-    res.sendStatus(400)
+    res.sendStatus(500)
   })
+})
+
+app.post('/search', (req,res) => {
+  const searchTerm = req.body.searchTerm || '';
+  const token = spotifyApi._credentials.access_token
+
+  if(token === undefined){
+    console.log('hello?')
+    res.status(500).json({
+      message: 'No Auth token provided.'
+    })
+    return
+  }
+
+  // const result = await searchController.generalSearch(searchTerm, token)
+  // console.log(result)
+  // res.json({
+  //   status: 'testing!'
+  // })
 })
 
 
