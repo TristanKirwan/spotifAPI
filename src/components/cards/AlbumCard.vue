@@ -15,6 +15,7 @@
 
 <script>
 import CardOverlayPill from '@/components/CardOverlayPill';
+import createArtistString from '@/utils/createArtistString';
 
 export default {
   name: 'AlbumCard',
@@ -24,6 +25,7 @@ export default {
   props: ['data'],
   data() {
     return {
+      //TODO: Fix this placeholder
       imgSrc: this.data.images[1].url || '',
       albumTitle: this.data.name,
       albumType: this.data.album_type,
@@ -35,19 +37,7 @@ export default {
       return `Album cover for ${this.data.name} by ${this.artistString}`
     },
     artistString(){
-      return this.createArtistString();
-    }
-  },
-  methods: {
-    createArtistString(){
-      const artistsArray = this.data.artists
-      if(artistsArray.length === 1) return artistsArray[0].name
-      let artistString = ''
-      for(let i = 0; i < artistsArray.length; i ++) {
-        artistString += `${artistsArray[i].name} & `
-      }
-      const finalString = artistString.substr(0, artistString.length - 3)
-      return finalString
+      return createArtistString(this.data.artists);
     }
   }
 }
@@ -66,6 +56,7 @@ export default {
   transform: scale(1);
   &:hover{ 
     transform: scale(1.02);
+    cursor: pointer;
   }
 }
 

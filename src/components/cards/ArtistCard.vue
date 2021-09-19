@@ -53,6 +53,12 @@ export default {
   grid-gap: 15px;
   box-shadow: 5px 5px 15px var(--color-grey);
   background-color: var(--color-white);
+  transform: scale(1);
+  transition: transform 0.2s;
+  &:hover { 
+    cursor: pointer;
+    transform: scale(1.02);
+  }
 }
 
 .artistPhoto {

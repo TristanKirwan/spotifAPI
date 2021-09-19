@@ -8,6 +8,10 @@
   />
   <div class="resultsContainer">
     <Container>
+      <div class="tracksContainer categoryContainer" id="search-results-tracks">
+        <span class="categoryTitle">Tracks:</span>
+        <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
+      </div>
       <div class="artistsContainer categoryContainer" id="search-results-artists">
         <span class="categoryTitle">Artists:</span>
         <ArtistCard v-for="artist in artistResults.items" :key="artist.id" :data="artist"/>
@@ -25,9 +29,10 @@
 
 <script>
 import SearchResultsHeader from '@/components/SearchResultsHeader'
+import Container from '@/components/Container'
 import AlbumCard from '@/components/cards/AlbumCard'
 import ArtistCard from '@/components/cards/ArtistCard'
-import Container from '@/components/Container'
+import TrackCard from '@/components/cards/TrackCard'
 
 export default {
 name: 'Component',
@@ -36,6 +41,7 @@ components: {
   Container,
   AlbumCard,
   ArtistCard,
+  TrackCard
 },
 props: {
   albumResults: {

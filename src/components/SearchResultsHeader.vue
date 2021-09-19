@@ -2,9 +2,9 @@
 <div class="searchResultsHeader">
   <Container>
     <div class="contentContainer">
-      <span class="resultCategory">
+      <a href="#search-results-tracks" class="resultCategory">
         <i class="fas fa-music"></i> {{amountTracks}}
-      </span>
+      </a>
       <a href="#search-results-albums" class="resultCategory">
         <i class="fas fa-compact-disc"></i> {{amountAlbums}}
       </a>
