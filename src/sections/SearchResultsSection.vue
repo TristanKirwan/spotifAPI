@@ -8,6 +8,10 @@
   />
   <div class="resultsContainer">
     <Container>
+      <div class="playlistContainer categoryContainer" id="search-results-playlists">
+        <span class="categoryTitle">Playlists:</span>
+        <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
+      </div>
       <div class="tracksContainer categoryContainer" id="search-results-tracks">
         <span class="categoryTitle">Tracks:</span>
         <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
@@ -33,6 +37,7 @@ import Container from '@/components/Container'
 import AlbumCard from '@/components/cards/AlbumCard'
 import ArtistCard from '@/components/cards/ArtistCard'
 import TrackCard from '@/components/cards/TrackCard'
+import PlaylistCard from '@/components/cards/PlaylistCard'
 
 export default {
 name: 'Component',
@@ -41,7 +46,8 @@ components: {
   Container,
   AlbumCard,
   ArtistCard,
-  TrackCard
+  TrackCard,
+  PlaylistCard
 },
 props: {
   albumResults: {
@@ -67,15 +73,15 @@ computed: {
     return this.albumResults.items.length;
   },
   amountArtists(){
-    if(this.albumResults.items === undefined) return 0
+    if(this.artistResults.items === undefined) return 0
     return this.artistResults.items.length;
   },
   amountPlaylists(){
-    if(this.albumResults.items === undefined) return 0
+    if(this.playlistResults.items === undefined) return 0
     return this.playlistResults.items.length;
   },
   amountTracks(){
-    if(this.albumResults.items === undefined) return 0
+    if(this.trackResults.items === undefined) return 0
     return this.trackResults.items.length
   }
 }
