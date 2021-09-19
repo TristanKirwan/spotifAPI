@@ -69,3 +69,5 @@ app.post('/search', async (req,res) => {
 app.listen(port, '0.0.0.0', () => {
   console.log(`App listening at http://0.0.0.0:${port}`);
 });
+
+module.exports.spotifyApi = spotifyApi

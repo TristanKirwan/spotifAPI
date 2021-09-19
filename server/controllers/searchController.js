@@ -1,4 +1,5 @@
 const axios = require('axios')
+const appController = require('./appController')
 
 async function generalSearch(term, token){
   let escapedTerm = term.replace(/\s/g, '%20')
@@ -10,7 +11,12 @@ async function generalSearch(term, token){
   .then(data => {
     return data
   })
-  .catch(err => {
+  .catch(async err => {
+    if(err.status === 401 && err.message === 'The access token expired'){
+      console.log('The access Token expired, trying to refresh and search again...')
+      const newToken = await appController.refreshToken;
+      return generalSearch(term, newToken)
+    }
     console.error('Something went wrong during the search', err.response.data)
     return err.response.data
   })
