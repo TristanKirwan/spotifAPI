@@ -39,6 +39,7 @@ components: {
 
 .searchWave {
   position: absolute;
+  z-index: -1;
 }
 .content {
   display: grid;

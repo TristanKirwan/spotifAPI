@@ -1,18 +1,39 @@
 <template>
   <SearchHeaderSection />
+  <SearchResultsSection 
+    :albumResults="results.albums"
+    :artistResults="results.artists"
+    :playlistResults="results.playlists"
+    :trackResults="results.tracks"
+  />
 </template>
 
 <script>
 import SearchHeaderSection from '@/sections/SearchHeaderSection';
+import SearchResultsSection from '@/sections/SearchResultsSection';
 
 export default {
   name: 'Search',
   components: {
-    SearchHeaderSection
+    SearchHeaderSection,
+    SearchResultsSection
   },
   data() {
     return {
-      results: null
+      results: {
+        albums: {
+          items: []
+        },
+        artists: {
+          items: []
+        },
+        playlists: {
+          items: []
+        },
+        tracks: {
+          items: []
+        }
+      }
     }
   },
   created() {

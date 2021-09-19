@@ -37,6 +37,7 @@ export default {
 html {
   background-color: var(--color-white);
   color: var(--color-black);
+  scroll-behavior: smooth;
 }
 
 body { 
