@@ -34,7 +34,7 @@ data(){
 .playlist {
   display: grid;
   grid-template-columns: max-content 1fr max-content;
-  grid-gap: 10px;
+  grid-gap: 20px;
   align-items: center;
   box-shadow: 5px 5px 15px var(--color-grey);
   padding: 5px 10px;

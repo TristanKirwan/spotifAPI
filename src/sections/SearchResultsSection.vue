@@ -6,15 +6,15 @@
     :amountPlaylists="amountPlaylists"
     :amountTracks="amountTracks"
   />
-  <div class="resultsContainer">
-    <Container>
-      <div class="playlistContainer categoryContainer" id="search-results-playlists">
-        <span class="categoryTitle">Playlists:</span>
-        <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
-      </div>
+  <div>
+    <Container propClass="resultsContainer">
       <div class="tracksContainer categoryContainer" id="search-results-tracks">
         <span class="categoryTitle">Tracks:</span>
         <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
+      </div>
+      <div class="playlistContainer categoryContainer" id="search-results-playlists">
+        <span class="categoryTitle">Playlists:</span>
+        <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
       </div>
       <div class="artistsContainer categoryContainer" id="search-results-artists">
         <span class="categoryTitle">Artists:</span>
@@ -96,6 +96,14 @@ computed: {
   grid-gap: 30px;
 }
 
+.resultsContainer{
+  display: grid;
+  @include m {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px 25px;
+  }
+}
+
 .albumsContainer{
   grid-template-columns: repeat(2, 1fr);
   @include xs {
@@ -104,6 +112,7 @@ computed: {
   @include m {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
+    grid-column: span 2;
   }
   @include l {
     grid-template-columns: repeat(5, 1fr);
@@ -116,11 +125,19 @@ computed: {
 .artistsContainer {
   @include m {
     grid-template-columns: repeat(2, 1fr);
+    grid-column: span 2;
   }
   @include xl {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.playlistContainer, .tracksContainer{
+  @include m {
+    grid-column: span 1;
+  }
+}
+
 
 .categoryContainer {
   display: grid;
