@@ -1,7 +1,7 @@
 <template>
   <div class="searchContainer">
     <input type="text" v-model="searchTerm" v-on:keydown.enter="submitSearchTerm" placeholder="Artists, albums podcasts.. anything!" class="input"/>
-    <span class="iconContainer">
+    <span class="iconContainer" :class="{home: isHome}">
       <i class="fas fa-search searchIcon"></i>
     </span>
   </div>
@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'Search',
+  props: ['isHome'],
   data () {
     return {
       searchTerm: ""
@@ -23,25 +24,6 @@ export default {
           searchTerm: this.searchTerm
         }
       })
-
-      const result = await fetch(`${process.env.VUE_APP_baseUrl}/search`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          searchTerm: this.searchTerm
-        })
-      })
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        if(data.message === 'No Auth token provided.') {
-          console.log('Caught no auth token!')
-        }
-      })
-      .catch(err => console.error(err))
 
     }
   },
@@ -71,8 +53,11 @@ export default {
     border-radius: 50%;
     align-items: center;
     justify-items: center;
-    background-color: var(--color-teal);
+    background-color: var(--color-black);
     transform: translateY(-50%);
+    &.home {
+      background-color: var(--color-teal);
+    }
   }
 
   .input{

@@ -4,7 +4,7 @@ const cors = require('cors')
 const SpotifyWebApi = require('spotify-web-api-node')
 require('dotenv').config({ path: `${__dirname}/.env` })
 
-const searchController = require('../controllers/searchController');
+const searchController = require('../controllers/searchController')
 
 
 const app = express();
@@ -50,23 +50,19 @@ app.post('/refresh', (req, res) => {
   })
 })
 
-app.post('/search', (req,res) => {
+app.post('/search', async (req,res) => {
   const searchTerm = req.body.searchTerm || '';
-  const token = spotifyApi._credentials.access_token
+  const token = spotifyApi._credentials.accessToken
 
   if(token === undefined){
-    console.log('hello?')
     res.status(500).json({
       message: 'No Auth token provided.'
     })
     return
   }
-
-  // const result = await searchController.generalSearch(searchTerm, token)
-  // console.log(result)
-  // res.json({
-  //   status: 'testing!'
-  // })
+  
+  const result = await searchController.generalSearch(searchTerm, token)
+  return res.json(result)
 })
 
 

@@ -1,10 +1,12 @@
 <template>
-  <nav id="nav">
-    <router-link to="/" class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></router-link>
-    <div class="searchBar" v-if="hasAccessToken">
-      <i class="fas fa-search"></i>
+  <nav id="nav" :class="{hasBackground: shouldHaveBackground}">
+    <div class="content">
+      <router-link to="/" class="siteTitle">SpotifAPI<i class="fab fa-spotify"></i></router-link>
+      <div class="searchBar" v-if="hasAccessToken">
+        <i class="fas fa-search"></i>
+      </div>
+      <hr>
     </div>
-    <hr>
   </nav>
 </template>
 
@@ -15,18 +17,33 @@ export default {
   name: 'Navbar',
   computed: mapState([
     'hasAccessToken'
-  ])
+  ]),
+  data() {
+    return {
+      shouldHaveBackground: false
+    }
+  },
+  watch : {
+    $route(newValue) {
+      const routesWithBackground = ['Search']
+      this.shouldHaveBackground = routesWithBackground.indexOf(newValue.name) >= 0
+    }
+  },
 }
 </script>
 
 
 <style lang="scss" scoped>
 @import '@/styles/imports.scss';
-nav {
+.hasBackground {
+  background-color: var(--color-grey)
+}
+
+.content {
   display: grid;
   grid-gap: 15px;
   grid-template-columns: 3fr 1fr;
-  padding: 0 10px 25px;
+  padding: 0 20px 25px;
   max-width: 1200px;
   margin: 0 auto;
   align-items: center;
