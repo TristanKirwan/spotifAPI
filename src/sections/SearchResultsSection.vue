@@ -8,7 +8,11 @@
   />
   <div class="resultsContainer">
     <Container>
-      <div class="albumsContainer" id="search-results-albums">
+      <div class="artistsContainer categoryContainer" id="search-results-artists">
+        <span class="categoryTitle">Artists:</span>
+        <ArtistCard v-for="artist in artistResults.items" :key="artist.id" :data="artist"/>
+      </div>
+      <div class="albumsContainer categoryContainer" id="search-results-albums">
         <span class="categoryTitle">Albums:</span>
         <AlbumCard v-for="album in albumResults.items" :key="album.id" :data="album"/>
       </div>
@@ -22,14 +26,16 @@
 <script>
 import SearchResultsHeader from '@/components/SearchResultsHeader'
 import AlbumCard from '@/components/cards/AlbumCard'
+import ArtistCard from '@/components/cards/ArtistCard'
 import Container from '@/components/Container'
 
 export default {
 name: 'Component',
 components: {
   SearchResultsHeader,
+  Container,
   AlbumCard,
-  Container
+  ArtistCard,
 },
 props: {
   albumResults: {
@@ -79,8 +85,6 @@ computed: {
 }
 
 .albumsContainer{
-  display: grid;
-  grid-gap: 15px;
   grid-template-columns: repeat(2, 1fr);
   @include xs {
     grid-template-columns: 1fr;
@@ -95,6 +99,20 @@ computed: {
   @include xl {
     grid-template-columns: repeat(6, 1fr);
   }
+}
+
+.artistsContainer {
+  @include m {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include xl {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.categoryContainer {
+  display: grid;
+  grid-gap: 15px;
 }
 
 .categoryTitle {

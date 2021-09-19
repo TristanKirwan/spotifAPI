@@ -8,9 +8,9 @@
       <a href="#search-results-albums" class="resultCategory">
         <i class="fas fa-compact-disc"></i> {{amountAlbums}}
       </a>
-      <span class="resultCategory">
+      <a href="#search-results-artists" class="resultCategory">
         <i class="fas fa-users"></i> {{amountArtists}}
-      </span>
+      </a>
       <span class="resultCategory">
         <i class="fas fa-list-ol"></i> {{amountPlaylists}}
       </span>

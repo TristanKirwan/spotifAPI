@@ -12,7 +12,9 @@ async function generalSearch(term, token){
     return data
   })
   .catch(async err => {
-    if(err.status === 401 && err.message === 'The access token expired'){
+    const {error: apiError} = err
+    console.log(err, apiError)
+    if(apiError.status === 401 && errapiErroror.message === 'The access token expired'){
       console.log('The access Token expired, trying to refresh and search again...')
       const newToken = await appController.refreshToken;
       return generalSearch(term, newToken)

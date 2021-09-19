@@ -38,9 +38,6 @@ export default {
       return this.createArtistString();
     }
   },
-  created() {
-    console.log(this.data)
-  },
   methods: {
     createArtistString(){
       const artistsArray = this.data.artists
