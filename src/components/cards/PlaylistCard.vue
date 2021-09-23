@@ -55,8 +55,11 @@ data(){
   color: var(--color-green);
 }
 
-.title {
+.title{
   font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .owner{

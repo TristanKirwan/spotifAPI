@@ -14,4 +14,3 @@ Make thanks bar:
 https://getwaves.io/
 Font-awesome
 Spotify API
-Random person API

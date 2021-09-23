@@ -37,7 +37,7 @@ computed: {
 <style scoped lang='scss'>
 .track{ 
   display: grid;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: max-content minmax(180px, 1fr) max-content;
   grid-gap: 20px;
   align-items: center;
   box-shadow: 5px 5px 15px var(--color-grey);
@@ -58,6 +58,9 @@ computed: {
 
 .title{
   font-weight: 500;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .artists{
