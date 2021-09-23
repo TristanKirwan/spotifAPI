@@ -11,22 +11,30 @@
       <div class="tracksContainer categoryContainer" id="search-results-tracks">
         <span class="categoryTitle">Tracks:</span>
         <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
-        <button class="viewMoreButton" v-if="trackResults.items.length > 5 && !showingAllTracks" @click="viewAllTracks">View more</button>
+        <div class="viewMoreButtonContainer" v-if="trackResults.items.length > 5 && !showingAllTracks">
+          <button class="viewMoreButton" @click="viewAllTracks">View more<i class="fas fa-chevron-down"></i></button>
+        </div>
       </div>
       <div class="playlistContainer categoryContainer" id="search-results-playlists">
         <span class="categoryTitle">Playlists:</span>
         <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
-        <button class="viewMoreButton" v-if="playlistResults.items.length > 5 && !showingAllPlaylists" @click="viewAllPlaylists">View more</button>
+        <div class="viewMoreButtonContainer" v-if="playlistResults.items.length > 5 && !showingAllPlaylists">
+          <button class="viewMoreButton" @click="viewAllPlaylists">View more<i class="fas fa-chevron-down"></i></button>
+        </div>
       </div>
       <div class="artistsContainer categoryContainer" id="search-results-artists">
         <span class="categoryTitle">Artists:</span>
         <ArtistCard v-for="artist in artistResults.items" :key="artist.id" :data="artist"/>
-        <button class="viewMoreButton" v-if="artistResults.items.length > 5 && !showingAllArtists" @click="viewAllArtists">View more</button>
+        <div class="viewMoreButtonContainer" v-if="artistResults.items.length > 5 && !showingAllArtists">
+          <button class="viewMoreButton" @click="viewAllArtists">View more<i class="fas fa-chevron-down"></i></button>
+        </div>
       </div>
       <div class="albumsContainer categoryContainer" id="search-results-albums">
         <span class="categoryTitle">Albums:</span>
         <AlbumCard v-for="album in albumResults.items" :key="album.id" :data="album"/>
-        <button class="viewMoreButton" v-if="albumResults.items.length > 5 && !showingAllAlbums" @click="viewAllAlbums">View more</button>
+        <div class="viewMoreButtonContainer" v-if="albumResults.items.length > 5 && !showingAllAlbums">
+          <button class="viewMoreButton" @click="viewAllAlbums">View more<i class="fas fa-chevron-down"></i></button>
+        </div>
       </div>
     </Container>
   </div>
@@ -99,7 +107,21 @@ computed: {
     return this.trackResults.items.length
   }
 },
+watch: {
+  $props: {
+    handler() {
+      this.resetAllViewingOptions();
+    },
+    deep: true
+  }
+},
 methods: {
+  resetAllViewingOptions(){
+    this.showingAllTracks = false
+    this.showingAllPlaylists = false
+    this.showingAllArtists = false
+    this.showingAllAlbums = false
+  },
   viewAllTracks() {
     this.showingAllTracks = true
     this.animateItems('track')
@@ -116,7 +138,6 @@ methods: {
     this.showingAllAlbums = true
     this.animateItems('albumCard', true)
   },
-
   animateItems(itemClass, isBigItem = false){
     const allElements = document.querySelectorAll(`div.${itemClass}`)
     // All elements returns a Nodelist Object, which is not an array.
@@ -219,13 +240,35 @@ methods: {
 }
 
 .categoryContainer {
-  button { 
-    &.viewMoreButton{
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-      grid-column: 1 / -1;
+  .viewMoreButtonContainer{
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    transform: translateY(0);
+    grid-column: 1 / -1;
+  }
+}
+
+.viewMoreButton{
+  padding: 15px;
+  background-color: var(--color-black);
+  font-weight: 600;
+  color: var(--color-white);
+  border-radius: 25px;
+  transition: transform 0.2s;
+  transform: translateY(0px);
+  text-transform: uppercase;
+  &:hover{
+    cursor: pointer;
+    transform: translateY(2px);
+    i{
+      transform: translateY(2px);
     }
+  }
+  i {
+    margin-left: 5px;
+    transition: transform 0.2s;
+    transform: translateY(0);
   }
 }
 </style>
