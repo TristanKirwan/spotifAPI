@@ -1,8 +1,8 @@
 <template>
   <div class="card">
     <div class="header">
-      <img :src="avatarImg.medium" class="avatar mobileAvatar"/>
-      <img :src="avatarImg.large" class="avatar desktopAvatar"/>
+      <img :src="avatarImg" class="avatar mobileAvatar"/>
+      <img :src="avatarImg" class="avatar desktopAvatar"/>
       <span class="divider"></span >
     </div>
     <div class="body">
@@ -26,35 +26,13 @@ name: 'TestimonialCard',
 props: ['data'],
 data () {
   return {
-    avatarImg: {
-      small: '',
-      large: ''
-    },
-    avatarFirstName: '',
-    avatarLastName: ''
+    avatarImg: '',
+    fullName: this.data.name,
   }
 },
-computed: {
-  fullName() {
-    return `${this.avatarFirstName} ${this.avatarLastName}`
-  }
-},
-methods: {
-  async fetchPersonData() {
-    const res = await fetch('https://randomuser.me/api')
-    const data = await res.json();
-    return data
-  }
-},
-async created(){
-  const data = await this.fetchPersonData()
-  const resultData = data.results[0]
-
-  this.avatarFirstName = resultData.name.first;
-  this.avatarLastName = resultData.name.last;
-  this.avatarImg = resultData.picture
+created(){
+  this.avatarImg = require(`../assets/${this.data.src}`)
 }
-
 }
 </script>
 
@@ -95,8 +73,8 @@ async created(){
 }
 
 .avatar {
-  border-radius: 50%;
-  width: 100px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .desktopAvatar {
