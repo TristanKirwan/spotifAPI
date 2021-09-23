@@ -8,7 +8,6 @@ Make all result cards on search page links to relevant pages (all require an ext
 'Protect' pages that require authentication
 Get rid of the code appearing in the browser
 Fix bugs with auth token when there is no auth token.
-Don't show all results in 1 time on search page (See all button)
 
 Make thanks bar:
 https://getwaves.io/

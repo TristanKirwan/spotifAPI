@@ -46,7 +46,8 @@ computed: {
   transition: transform 0.2s;
   background-color: var(--color-white);
   &:hover {
-    transform: translateY(-2px);
+    //We need this important to override the transform that happens from animejs.
+    transform: translateY(-2px) !important;
     cursor: pointer;
   }
 
