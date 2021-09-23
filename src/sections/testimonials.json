@@ -2,9 +2,9 @@
   "testimonials": [
     {
       "id": 1,
-      "text": "I was amazed how uninteresting this site is, and how little it can do. But I did not have to open Spotify to look for nursery rhymes! I will be returning for sure!",
+      "text": "I was amazed at how uninteresting this site is, and how little it can do. But I did not have to open Spotify to look for nursery rhymes! I will be returning for sure!",
       "stars": 4,
-      "name": "Iy am",
+      "name": "Iy Am",
       "src": "IyAmAvatar.png"
     },
     {
@@ -16,9 +16,9 @@
     },
     {
       "id": 3,
-      "text": "SpotifAPI has really allowed me to see the joy in life again. For a while I wasn't able to see the bright side, but being able to type in search terms has really been the highlight of my week for months now. I love it!",
+      "text": "SpotifAPI has really allowed me to see the joy in life again. For a while I wasn't able to see the bright side, but being able to type in search terms has really been the highlight of my week for months now. I love it WOOF!",
       "stars": 3,
-      "name": "Ferry fahny",
+      "name": "Ferry Fahny",
       "src": "FerryFahnyAvatar.png"
     }
   ]

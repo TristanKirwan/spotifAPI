@@ -2,17 +2,20 @@
   <!-- <BackgroundBlobs /> -->
   <Navbar />
   <router-view/>
+  <Footer />
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer';
 import BackgroundBlobs from '@/components/BackgroundBlobs'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    BackgroundBlobs
+    BackgroundBlobs,
+    Footer
   }
 }
 </script>
@@ -21,11 +24,11 @@ export default {
 :root {
   --color-green: #1DB954;
   --color-black: #191414;
+  --color-black-mono: #352B2B;
   --color-white: #fff;
   --color-grey: #2c394b25;
-  --color-crayola: #1f363d;
+  //Remove teal?
   --color-teal: #40798c;
-
   --font-sm: 12px;
   --font-md: 14px;
   --font-lg: 16px;

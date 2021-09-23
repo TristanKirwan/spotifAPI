@@ -55,9 +55,6 @@ export default {
     justify-items: center;
     background-color: var(--color-black);
     transform: translateY(-50%);
-    &.home {
-      background-color: var(--color-teal);
-    }
   }
 
   .input{

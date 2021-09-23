@@ -42,8 +42,6 @@ export default {
   .home { 
     display: grid;
     grid-gap: 15px;
-    //TODO: get rid of this.
-    padding-bottom: 100px;
     @include m {
       margin-top: 25px;
     }
