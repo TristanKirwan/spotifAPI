@@ -124,21 +124,22 @@ methods: {
   },
   viewAllTracks() {
     this.showingAllTracks = true
-    this.animateItems('track')
+    this.animateItems('track', 'tracksContainer')
   },
   viewAllPlaylists(){
     this.showingAllPlaylists = true
-    this.animateItems('playlist')
+    this.animateItems('playlist', 'playlistContainer')
   },
   viewAllArtists(){
     this.showingAllArtists = true
-    this.animateItems('artistCard', true)
+    this.animateItems('artistCard', 'artistsContainer', true)
   },
   viewAllAlbums(){
     this.showingAllAlbums = true
-    this.animateItems('albumCard', true)
+    this.animateItems('albumCard', 'albumsContainer', true)
   },
-  animateItems(itemClass, isBigItem = false){
+  animateItems(itemClass, parentClass, isBigItem = false){
+    const parentElement = document.querySelector(`.${parentClass}`)
     const allElements = document.querySelectorAll(`div.${itemClass}`)
     // All elements returns a Nodelist Object, which is not an array.
     const allElementsArray = Array.from(allElements)
@@ -157,7 +158,7 @@ methods: {
         translateY: [`${intialTranslation}px`,'0px'],
         opacity: '1',
         begin: function() {
-          animateElements[i].style.display = 'grid'
+          parentElement.classList.add('view-all')
         }
       }, '-=125')
     }
@@ -192,6 +193,11 @@ methods: {
     opacity: 0;
     transform: translateY(10px);
   }
+  &.view-all{
+    :nth-child(n+7){
+      display: grid;    
+    }
+  } 
 }
 
 .albumsContainer{
