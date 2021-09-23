@@ -9,7 +9,7 @@ async function refreshToken(){
     console.error('Could not refresh access token:', err)
     res.sendStatus(500)
   })
-  return spotifyApi.getAccessToken()
+  return await spotifyApi.getAccessToken()
 }
 
 module.exports.refreshToken = refreshToken

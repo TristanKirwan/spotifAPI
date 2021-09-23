@@ -8,34 +8,44 @@
   />
   <div>
     <Container propClass="resultsContainer">
-      <div class="tracksContainer categoryContainer" id="search-results-tracks">
-        <span class="categoryTitle">Tracks:</span>
-        <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
-        <div class="viewMoreButtonContainer" v-if="trackResults.items.length > 5 && !showingAllTracks">
-          <button class="viewMoreButton" @click="viewAllTracks">View more<i class="fas fa-chevron-down"></i></button>
-        </div>
-      </div>
-      <div class="playlistContainer categoryContainer" id="search-results-playlists">
-        <span class="categoryTitle">Playlists:</span>
-        <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
-        <div class="viewMoreButtonContainer" v-if="playlistResults.items.length > 5 && !showingAllPlaylists">
-          <button class="viewMoreButton" @click="viewAllPlaylists">View more<i class="fas fa-chevron-down"></i></button>
-        </div>
-      </div>
-      <div class="artistsContainer categoryContainer" id="search-results-artists">
-        <span class="categoryTitle">Artists:</span>
-        <ArtistCard v-for="artist in artistResults.items" :key="artist.id" :data="artist"/>
-        <div class="viewMoreButtonContainer" v-if="artistResults.items.length > 5 && !showingAllArtists">
-          <button class="viewMoreButton" @click="viewAllArtists">View more<i class="fas fa-chevron-down"></i></button>
-        </div>
-      </div>
-      <div class="albumsContainer categoryContainer" id="search-results-albums">
-        <span class="categoryTitle">Albums:</span>
-        <AlbumCard v-for="album in albumResults.items" :key="album.id" :data="album"/>
-        <div class="viewMoreButtonContainer" v-if="albumResults.items.length > 5 && !showingAllAlbums">
-          <button class="viewMoreButton" @click="viewAllAlbums">View more<i class="fas fa-chevron-down"></i></button>
-        </div>
-      </div>
+      <template v-if="!hasSearched">
+        <NoSearchSection />
+      </template>
+      <template v-else>
+        <template v-if="!hasAnyResults">
+          <NoResultsSection />
+        </template>
+        <template v-else>
+          <div class="tracksContainer categoryContainer" id="search-results-tracks">
+            <span class="categoryTitle">Tracks:</span>
+            <TrackCard v-for="track in trackResults.items" :key="track.id" :data="track" />
+            <div class="viewMoreButtonContainer" v-if="trackResults.items.length > 5 && !showingAllTracks">
+              <button class="viewMoreButton" @click="viewAllTracks">View more<i class="fas fa-chevron-down"></i></button>
+            </div>
+          </div>
+          <div class="playlistContainer categoryContainer" id="search-results-playlists">
+            <span class="categoryTitle">Playlists:</span>
+            <PlaylistCard v-for="playlist in playlistResults.items" :key="playlist.id" :data="playlist"/>
+            <div class="viewMoreButtonContainer" v-if="playlistResults.items.length > 5 && !showingAllPlaylists">
+              <button class="viewMoreButton" @click="viewAllPlaylists">View more<i class="fas fa-chevron-down"></i></button>
+            </div>
+          </div>
+          <div class="artistsContainer categoryContainer" id="search-results-artists">
+            <span class="categoryTitle">Artists:</span>
+            <ArtistCard v-for="artist in artistResults.items" :key="artist.id" :data="artist"/>
+            <div class="viewMoreButtonContainer" v-if="artistResults.items.length > 5 && !showingAllArtists">
+              <button class="viewMoreButton" @click="viewAllArtists">View more<i class="fas fa-chevron-down"></i></button>
+            </div>
+          </div>
+          <div class="albumsContainer categoryContainer" id="search-results-albums">
+            <span class="categoryTitle">Albums:</span>
+            <AlbumCard v-for="album in albumResults.items" :key="album.id" :data="album"/>
+            <div class="viewMoreButtonContainer" v-if="albumResults.items.length > 5 && !showingAllAlbums">
+              <button class="viewMoreButton" @click="viewAllAlbums">View more<i class="fas fa-chevron-down"></i></button>
+            </div>
+          </div>
+        </template>
+      </template>
     </Container>
   </div>
 
@@ -45,6 +55,8 @@
 
 <script>
 import SearchResultsHeader from '@/components/SearchResultsHeader'
+import NoSearchSection from '@/components/NoSearchSection'
+import NoResultsSection from '@/components/NoResultsSection'
 import Container from '@/components/Container'
 import AlbumCard from '@/components/cards/AlbumCard'
 import ArtistCard from '@/components/cards/ArtistCard'
@@ -61,7 +73,9 @@ components: {
   AlbumCard,
   ArtistCard,
   TrackCard,
-  PlaylistCard
+  PlaylistCard,
+  NoSearchSection,
+  NoResultsSection
 },
 props: {
   albumResults: {
@@ -79,6 +93,10 @@ props: {
   trackResults: {
     type: Object,
     default: []
+  },
+  hasSearched: {
+    type: Boolean,
+    default: false
   }
 },
 data(){
@@ -105,6 +123,12 @@ computed: {
   amountTracks(){
     if(this.trackResults.items === undefined) return 0
     return this.trackResults.items.length
+  },
+  hasAnyResults(){
+    if(this.amountAlbums > 0 || this.amountArtists > 0 || this.amountPlaylists > 0 || this.amountTracks > 0){
+      return true
+    }
+    return false
   }
 },
 watch: {
@@ -172,7 +196,10 @@ methods: {
 
 .searchResultsSection {
   display : grid;
-  grid-gap: 30px;
+  grid-gap: 50px;
+  @include m {
+    grid-gap: 100px;
+  }
 }
 
 .resultsContainer{

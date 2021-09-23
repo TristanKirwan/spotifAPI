@@ -5,6 +5,7 @@
     :artistResults="results.artists"
     :playlistResults="results.playlists"
     :trackResults="results.tracks"
+    :hasSearched="hasSearched"
   />
 </template>
 
@@ -20,6 +21,7 @@ export default {
   },
   data() {
     return {
+      hasSearched: false,
       results: {
         albums: {
           items: []
@@ -38,13 +40,17 @@ export default {
   },
   created() {
     const searchTerm = this.$route.query.searchTerm
-    if(searchTerm) this.getNewResults(searchTerm)
+    if(searchTerm){
+      this.getNewResults(searchTerm)
+      this.hasSearched = true;
+    } 
   },
   watch : {
     $route(newValue, oldValue) {
       const oldQuery = oldValue.query.searchTerm;
       const newQuery = newValue.query.searchTerm;
       if(oldQuery !== newQuery) {
+        this.hasSearched = true;
         this.getNewResults(newQuery)
       }
     }
