@@ -11,9 +11,9 @@
       <a href="#search-results-artists" class="resultCategory">
         <i class="fas fa-users"></i> {{amountArtists}}
       </a>
-      <span class="resultCategory">
+      <a href="#search-results-playlists" class="resultCategory">
         <i class="fas fa-list-ol"></i> {{amountPlaylists}}
-      </span>
+      </a>
     </div>
   </Container>
 </div>
