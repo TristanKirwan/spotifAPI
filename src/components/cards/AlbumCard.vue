@@ -1,6 +1,5 @@
 <template>
-<!-- TODO: Implement click-through to album page -->
-  <div class="albumCard">
+  <router-link class="albumCard" :to="albumLink">
     <div class="overlayContainer">
       <CardOverlayPill>
         {{albumType}}
@@ -10,7 +9,7 @@
     <span class="albumTitle">{{albumTitle}}</span>
     <span class="albumArtists">{{artistString}}</span>
     <span><i class="fas fa-music trackCountIcon"></i><span>{{trackCount}}</span></span>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -38,6 +37,14 @@ export default {
     },
     artistString(){
       return createArtistString(this.data.artists);
+    },
+    albumLink(){
+      return {
+        name: 'Album',
+        params: {
+          id: this.data.id
+        }
+      }
     }
   }
 }

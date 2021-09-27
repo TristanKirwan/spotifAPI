@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="propClass">
+  <div :class="[size, propClass, 'container']">
     <slot></slot>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Container',
-  props: ['propClass']
+  props: ['size', 'propClass']
 
 }
 </script>
@@ -24,6 +24,11 @@ export default {
     }
     @include xl {
       max-width: 1600px;
+    }
+    &.small {
+      @include xl {
+        max-width: 1200px;
+      }
     }
   }
 </style>

@@ -65,6 +65,18 @@ app.post('/search', async (req,res) => {
   return res.json(result)
 })
 
+app.post('/album', async(req, res) => {
+  const albumId = req.body.id || '0';
+  const token = spotifyApi._credentials.accessToken;
+  if(token === undefined){
+    res.status(500).json({
+      message: 'No Auth token provided.'
+    })
+    return
+  }
+  const result = await searchController.getAlbum(albumId, token)
+  return res.json(result)
+})
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`App listening at http://0.0.0.0:${port}`);
