@@ -49,7 +49,7 @@ export default {
     $route(newValue, oldValue) {
       const oldQuery = oldValue.query.searchTerm;
       const newQuery = newValue.query.searchTerm;
-      if(oldQuery !== newQuery) {
+      if(oldQuery !== newQuery && newQuery) {
         this.hasSearched = true;
         this.getNewResults(newQuery)
       }

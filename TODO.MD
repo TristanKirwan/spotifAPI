@@ -5,13 +5,13 @@ Check for consistency on font-sizes.
 Change font?
 Aria labels? For search results header
 Fix smooth scrolling with anime instead of the CSS style.
-No longer execute search when going to another page from the searchPage
 
 ## Front-end features
 
 Make all result cards on search page links to relevant pages (all require an extra view?)
 'Protect' pages that require authentication
 Get rid of the code appearing in the browser
+Use spinner on search page instead of flashing no results screen.
 
 ## Back-end fixes
 
