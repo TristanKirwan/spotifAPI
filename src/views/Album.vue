@@ -91,11 +91,10 @@ async created(){
         console.log('Caught no auth token!')
       }
       if(data.message === 'invalid id') {
-        //Redirect to 404?
+        //TODO: Redirect to 404?
         console.log('This id does not exist')
       }
       else if(data.message = 'Success'){
-        console.log(data)
         this.data = data.data
         this.isLoading = false
       }

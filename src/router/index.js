@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home';
 import SearchPage from '../views/Search';
 import AlbumPage from '../views/Album';
+import ArtistPage from '../views/Artist';
 
 const routes = [
   {
@@ -15,9 +16,14 @@ const routes = [
     component: SearchPage
   },
   {
-    path: '/albums/:id',
+    path: '/album/:id',
     name: 'Album',
     component: AlbumPage
+  },
+  {
+    path: '/artist/:id',
+    name: "Artist",
+    component: ArtistPage
   }
 ]
 

@@ -78,6 +78,26 @@ app.post('/album', async(req, res) => {
   return res.json(result)
 })
 
+app.post('/artist', async(req,res) => {
+  const artistId = req.body.id || '0';
+  const token = spotifyApi._credentials.accessToken;
+  if(token === undefined) {
+    res.status(500).json({
+      message: 'No Auth token provided.'
+    })
+    return
+  }
+  const result = await searchController.getArtistInfo(artistId, token)
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({
+      message: 'Something went wrong getting the artist Information.'
+    })
+    return
+  })
+  return res.json(result)
+})
+
 app.listen(port, '0.0.0.0', () => {
   console.log(`App listening at http://0.0.0.0:${port}`);
 });

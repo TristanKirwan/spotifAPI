@@ -63,7 +63,7 @@ import ArtistCard from '@/components/cards/ArtistCard'
 import TrackCard from '@/components/cards/TrackCard'
 import PlaylistCard from '@/components/cards/PlaylistCard'
 
-import anime from 'animejs'
+import animateElementsIn from '@/utils/animateElementsIn'; 
 
 export default {
 name: 'Component',
@@ -148,44 +148,19 @@ methods: {
   },
   viewAllTracks() {
     this.showingAllTracks = true
-    this.animateItems('track', 'tracksContainer')
+    animateElementsIn('track', 'tracksContainer')
   },
   viewAllPlaylists(){
     this.showingAllPlaylists = true
-    this.animateItems('playlist', 'playlistContainer')
+    animateElementsIn('playlist', 'playlistContainer')
   },
   viewAllArtists(){
     this.showingAllArtists = true
-    this.animateItems('artistCard', 'artistsContainer', true)
+    animateElementsIn('artistCard', 'artistsContainer', true)
   },
   viewAllAlbums(){
     this.showingAllAlbums = true
-    this.animateItems('albumCard', 'albumsContainer', true)
-  },
-  animateItems(itemClass, parentClass, isBigItem = false){
-    const parentElement = document.querySelector(`.${parentClass}`)
-    const allElements = document.querySelectorAll(`div.${itemClass}`)
-    // All elements returns a Nodelist Object, which is not an array.
-    const allElementsArray = Array.from(allElements)
-    const animateElements = allElementsArray.slice(5)
-
-    const intialTranslation = isBigItem ? 250 : 100
-
-    const tl = anime.timeline({
-      easing: 'linear',
-      duration: 200
-    })
-
-    for(let i = 0; i < animateElements.length; i++) {
-      tl.add({
-        targets: animateElements[i],
-        translateY: [`${intialTranslation}px`,'0px'],
-        opacity: '1',
-        begin: function() {
-          parentElement.classList.add('view-all')
-        }
-      }, '-=125')
-    }
+    animateElementsIn('albumCard', 'albumsContainer', true)
   },
 }
 }

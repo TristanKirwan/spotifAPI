@@ -1,5 +1,5 @@
 <template>
-  <div class="artistCard">
+  <router-link class="artistCard" :to="artistLink">
     <img :alt="artistAltText" :src="imgSrc" class="artistPhoto"/>
     <div class="cardBody">
       <span class="artistName">{{artistName}}</span>
@@ -7,7 +7,7 @@
         <GeneralPill v-for="genre in artistGenres" :key="genre" class="genreLabel">{{genre}}</GeneralPill>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -36,6 +36,14 @@ export default {
     shouldShowGenresContainer(){
       if(this.artistGenres.length > 0) return true
       return false
+    },
+    artistLink() {
+      return {
+        name: 'Artist',
+        params: {
+          id: this.data.id
+        }
+      }
     }
   },
   created(){
