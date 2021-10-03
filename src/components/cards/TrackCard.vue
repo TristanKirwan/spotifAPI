@@ -1,5 +1,5 @@
 <template>
-  <div class="track">
+  <a :href="trackLink" class="track" rel="noopener norefferer" target="_blank">
     <i class="fas fa-music musicIcon"></i>
     <div class="trackInfoContainer">
       <span class="title">{{title}}</span>
@@ -8,7 +8,7 @@
     <span class="duration">
       {{songDuration}}
     </span>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -21,6 +21,7 @@ props: ['data'],
 data() {
   return {
     title: this.data.name,
+    trackLink: this.data.external_urls.spotify
   }
 },
 computed: {
@@ -29,7 +30,7 @@ computed: {
   },
   songDuration(){
     return songDurationToMinuteString(this.data.duration_ms || 0)
-  }
+  },
 },
 }
 </script>
