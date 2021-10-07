@@ -1,19 +1,3 @@
-# vue-spotify-app
+## Spotify API app
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+I made this app as an introduction to Vue.js. Though it is not complete I have decided to halt the development of this project for now Because I no longer found any fun in its development.
